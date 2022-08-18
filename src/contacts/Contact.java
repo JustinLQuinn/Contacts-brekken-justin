@@ -33,5 +33,18 @@ public class Contact {
         Contact contact = (Contact) obj;
         return contact.name.equals(this.name) && contact.number.equals(this.number);
     }
+
+    addContact(){
+
+    }
+    deleteContact(){
+
+    }
+    searchContact(){
+
+    }
+    showContacts(){
+
+    }
 }
 

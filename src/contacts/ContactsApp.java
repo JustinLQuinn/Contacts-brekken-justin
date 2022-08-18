@@ -8,10 +8,10 @@ public class ContactsApp {
     private static void showMenu() {
         System.out.println("");
         System.out.println("0 - Exit");
-        System.out.println("1 - View Contacts");
-        System.out.println("2 - Add A Contact");
+        System.out.println("1 - Add A Contact");
+        System.out.println("2 - Remove A Contact");
         System.out.println("3 - Search Contacts");
-        System.out.println("4 - Remove A Contact");
+        System.out.println("4 - View Contacts");
         System.out.println();
         System.out.print("Your choice? ");
     }
@@ -30,10 +30,10 @@ public class ContactsApp {
 
         switch (choice) {
             case "0" -> exit();
-            case "1" -> System.out.println("helloq");
-            case "2" -> System.out.println("hello2");
-            case "3" -> System.out.println("hello3");
-            case "4" -> System.out.println("hello");
+            case "1" -> addContact();
+            case "2" -> deleteContact();
+            case "3" -> searchContact();
+            case "4" -> showContacts();
             default -> {
                 showMenu();
                 return;
@@ -42,9 +42,16 @@ public class ContactsApp {
         showMenu();
     }
 
-//    public void start() {
-//        showMenu();
-//    }
+    private static void addContact() {
+        System.out.println("Let's add a new contact!");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Let's add a Name.");
+        String name = scanner.nextLine();
+        System.out.println("Let's add their number.");
+        int phoneNumber = scanner.nextInt();
+
+    }
+
 
     public static void error (String message){
         System.err.println("An error occured!");
