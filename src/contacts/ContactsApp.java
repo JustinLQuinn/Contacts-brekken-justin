@@ -23,6 +23,11 @@ public class ContactsApp {
         showMenu();
         String choice = scanner.nextLine();
 
+        //1. showContact();
+        //2. searchContact();
+        //3. addContact();
+        //4. deleteContact();
+
         switch (choice) {
             case "0" -> exit();
             case "1" -> System.out.println("helloq");
