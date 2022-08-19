@@ -13,13 +13,8 @@ import java.util.ArrayList;
 
 
 public class ContactsApp {
-
     public static final String BLUE_BACKGROUND = "\u001B[44m";
-
     public static final String CYAN = "\u001B[36m";
-
-
-
 
     public static ArrayList<Contact> createContactsArr(Path path) throws IOException {
         List<String> printList = Files.readAllLines(path);
@@ -29,9 +24,7 @@ public class ContactsApp {
         for (int i = 0; i < printList.size(); i += 2) {
             contactArr.add(new Contact(printList.get(i), printList.get(i + 1)));
         }
-
         return contactArr;
-
     }
 
     public static void initiateContacts() throws IOException {
@@ -58,11 +51,9 @@ public class ContactsApp {
         } while (true);
     }
 
-
     public static void main(String[] args) throws IOException {
         initiateContacts();
     }
-
 
     public static void showContacts(List<String> stringList) {
         System.out.println();
@@ -74,7 +65,6 @@ public class ContactsApp {
         }
         System.out.println();
     }
-
 
     public static void addContact(Path path) throws IOException {
         Input input = new Input();
@@ -122,27 +112,18 @@ public class ContactsApp {
         System.out.println("Enter a contact: ");
         String userSearch = input.getString();
 
-        List<String> newList = new ArrayList<>();
+        List<String> newArrList = new ArrayList<>();
 
         for (Contact contact : contactArr) {
             if (userSearch.equalsIgnoreCase(contact.name)) {
                 continue;
             }
-            newList.add(contact.name);
-            newList.add(contact.number);
+            newArrList.add(contact.name);
+            newArrList.add(contact.number);
         }
-        Files.write(path, newList);
+        Files.write(path, newArrList);
         initiateContacts();
     }
-
-    public static void error (String message){
-        System.err.println("An error occurred!");
-        System.out.println("ERROR: " + message);
-    }
-    public static void error () {
-        error("An unknown error occurred");
-    }
-
 
         public static void goodbye () {
             System.out.println("--------------------");
@@ -152,9 +133,7 @@ public class ContactsApp {
             System.out.println();
         }
 
-
         public static void exit() {
-
             goodbye();
             System.exit(0);
         }
