@@ -2,13 +2,18 @@ package contacts;
 
 public class Contact {
     private String name;
-    private String number;
+    private Integer number;
 
-    public Contact(String name, String number) {
+
+    public Contact(String name, int number) {
         this.name = name;
         this.number = number;
     }
 
+//    public static Contacts createFromString(String personString) {
+//        String [] parts = personString.split(":");
+//        return new Contacts(parts[0].trim(), Integer.parseInt(parts[1].trim()));
+//    }
     public String getName() {
         return name;
     }
@@ -17,34 +22,22 @@ public class Contact {
         this.name = name;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Contact)) {
-            return false;
-        }
-        Contact contact = (Contact) obj;
-        return contact.name.equals(this.name) && contact.number.equals(this.number);
-    }
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (!(obj instanceof Contacts)) {
+//            return false;
+//        }
+//        Contacts contact = (Contacts) obj;
+//        return contact.name.equals(this.name) && contact.number.equals(this.number);
+//    }
 
-    addContact(){
-
-    }
-    deleteContact(){
-
-    }
-    searchContact(){
-
-    }
-    showContacts(){
-
-    }
 }
 
