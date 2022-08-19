@@ -27,49 +27,38 @@ public static ArrayList<Contact> createContactsArray(Path path) throws IOExcepti
 
 }
 
-    private static void showMenu() {
-        System.out.println("");
-        System.out.println("0 - Exit");
-        System.out.println("1 - Add A Contact");
-        System.out.println("2 - Remove A Contact");
-        System.out.println("3 - Search Contacts");
-        System.out.println("4 - View Contacts");
-        System.out.println();
-        System.out.print("Your choice? ");
-    }
+    public static void initiateContacts() throws IOException {
 
+        Input input = new Input();
+        String directory = "./src/contacts/data";
+        String fileName = "contacts.txt";
+        Path dataFile = Paths.get(directory, fileName);
 
-    public static void main(String[] args) {
-        System.out.println(loadList());
-        Scanner scanner = new Scanner(System.in);
-        showMenu();
-        String choice = scanner.nextLine();
-        //1. showContact();
-        //2. searchContact();
-        //3. addContact();
-        //4. deleteContact();
-        switch (choice) {
-            case "0" -> exit();
-            case "1" -> addContact();
-//            case "2" -> deleteContact();
-//            case "3" -> searchContact();
-            case "4" -> loadList();
-            default -> {
-                showMenu();
-                return;
+        boolean confirmation = true;
+
+        do {
+            List<String> printList = Files.readAllLines(dataFile);
+            loadList(printList);
+            System.out.printf("1. View contacts.\n2. Add a new contact.\n3. Search a contact by name.\n4. Delete an existing contact.\n5. Exit.\nEnter an option (1, 2, 3, 4 or 5):%n");
+            String userSelection = input.getString();
+            System.out.println("userSelection = " + userSelection);
+
+            switch (userSelection) {
+                case "1" -> initiateContacts();
+                case "2" -> addContact(dataFile);
+//                case "3" -> searchContact(dataFile, input);
+//                case "4" -> deleteContact(dataFile, input);
+                case "5" -> exit();
             }
-        }
-        showMenu();
+        } while (true);
     }
 
-//    public static String showContacts (objects) {
-//        for (int i = 0; i < objects.size(); i++) {
-//            for (int j = 0; j < objects[i].size(); j++) {
-//                System.out.println(objects[i].[j].getName();
-//                System.out.println(objects[i].[j].getNumber();
-//            }
-//            return objects.field[j].toString();
-//        }
+
+    public static void main(String[] args) throws IOException {
+        initiateContacts();
+    }
+
+
 
     public static void loadList(List<String> stringList) {
         System.out.println();
@@ -83,21 +72,6 @@ public static ArrayList<Contact> createContactsArray(Path path) throws IOExcepti
     }
 
 
-
-//    private static void addContact() {
-//        System.out.println("Let's add a new contact!");
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Let's add a Name.");
-//        String name = scanner.nextLine();
-//        System.out.println("Let's add their number.");
-//        int phoneNumber = scanner.nextInt();
-//        //pass values to object constructor
-//       objects.add(String.valueOf(new Contact(name, phoneNumber)));
-//        System.out.print(objects);
-//
-//
-//        }
-//    }
 public static void addContact(Path path) throws IOException {
     Input input = new Input();
 
