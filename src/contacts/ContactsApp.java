@@ -14,7 +14,8 @@ import java.util.ArrayList;
 
 public class ContactsApp {
 
-    public static final String RED_BACKGROUND = "\u001B[45m";
+    public static final String BLUE_BACKGROUND = "\u001B[44m";
+
     public static final String CYAN = "\u001B[36m";
 
 
@@ -40,15 +41,12 @@ public class ContactsApp {
         String fileName = "contacts.txt";
         Path dataFile = Paths.get(directory, fileName);
         System.out.println(CYAN);
-        System.out.println(RED_BACKGROUND);
-
-        boolean confirmation = true;
+        System.out.println(BLUE_BACKGROUND);
 
         do {
             List<String> printList = Files.readAllLines(dataFile);
             System.out.printf("1) Show contacts \n2) Add a new contact \n3) Search a contact (by name) \n4) Delete a contact \n5) Exit program \nEnter an option plz [1, 2, 3, 4 or 5]:%n");
             String userSelection = input.getString();
-//            System.out.println("userSelection = " + userSelection);
 
             switch (userSelection) {
                 case "1" -> showContacts(printList);
@@ -120,26 +118,21 @@ public class ContactsApp {
     }
 
     public static void deleteContact(Path path, Input input) throws IOException {
-            ArrayList<Contact> contactArr = createContactsArr(path);
-            System.out.println("Enter contact you wish to remove: ");
-            String userSearch = input.getString();
-            int index = -1;
-        for (int i = 0; i < contactArr.size(); i++) {
-            if (contactArr.equals(userSearch))
-            index = i;
-        }
-        contactArr.remove(index);
-        System.out.println(contactArr);
-//            for (Contact contact : contactArr) {
-//                if (userSearch.equalsIgnoreCase(contact.name)) {
-//
-//
-//                    System.out.printf("%s"+" has been Removed!!!", contact.name);
-//                    System.out.print(contactArr);
-//                    break;
-//                }
-//            }
+        ArrayList<Contact> contactArr = createContactsArr(path);
+        System.out.println("Enter a contact: ");
+        String userSearch = input.getString();
 
+        List<String> newList = new ArrayList<>();
+
+        for (Contact contact : contactArr) {
+            if (userSearch.equalsIgnoreCase(contact.name)) {
+                continue;
+            }
+            newList.add(contact.name);
+            newList.add(contact.number);
+        }
+        Files.write(path, newList);
+        initiateContacts();
     }
 
     public static void error (String message){
