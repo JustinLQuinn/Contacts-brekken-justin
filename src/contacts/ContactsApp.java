@@ -46,7 +46,7 @@ public class ContactsApp {
                 case "1" -> showContacts(printList);
                 case "2" -> addContact(dataFile);
                 case "3" -> searchContacts(dataFile, input);
-//                case "4" -> deleteContact(dataFile, input);
+                case "4" -> deleteContact(dataFile, input);
                 case "5" -> confirmation = false;
                 default -> initiateContacts();
             }
@@ -112,6 +112,28 @@ public class ContactsApp {
         }
     }
 
+    public static void deleteContact(Path path, Input input) throws IOException {
+            ArrayList<Contact> contactArr = createContactsArr(path);
+            System.out.println("Enter contact you wish to remove: ");
+            String userSearch = input.getString();
+            int index = -1;
+        for (int i = 0; i < contactArr.size(); i++) {
+            if (contactArr.equals(userSearch))
+            index = i;
+        }
+        contactArr.remove(index);
+        System.out.println(contactArr);
+//            for (Contact contact : contactArr) {
+//                if (userSearch.equalsIgnoreCase(contact.name)) {
+//
+//
+//                    System.out.printf("%s"+" has been Removed!!!", contact.name);
+//                    System.out.print(contactArr);
+//                    break;
+//                }
+//            }
+
+    }
 
     public static void error (String message){
         System.err.println("An error occured!");
@@ -134,7 +156,7 @@ public class ContactsApp {
         public static void exit() {
 
             goodbye();
-            exit();
+            System.exit(0);
         }
     }
 
