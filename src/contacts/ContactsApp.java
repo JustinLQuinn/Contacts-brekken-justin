@@ -38,19 +38,19 @@ public class ContactsApp {
 
         do {
             List<String> printList = Files.readAllLines(dataFile);
-            showContacts(printList);
             System.out.printf("1) Show contacts \n2) Add a new contact \n3) Search a contact (by name) \n4) Delete a contact \n5) Exit program \nEnter an option plz [1, 2, 3, 4 or 5]:%n");
             String userSelection = input.getString();
             System.out.println("userSelection = " + userSelection);
 
             switch (userSelection) {
-                case "1" -> initiateContacts();
+                case "1" -> showContacts(printList);
                 case "2" -> addContact(dataFile);
                 case "3" -> searchContacts(dataFile, input);
 //                case "4" -> deleteContact(dataFile, input);
-                case "5" -> exit();
+                case "5" -> confirmation = false;
+                default -> initiateContacts();
             }
-        } while (true);
+        } while (confirmation);
     }
 
 
