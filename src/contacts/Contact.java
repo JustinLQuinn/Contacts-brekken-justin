@@ -11,10 +11,6 @@ public class Contact {
         this.number = number;
     }
 
-//    public static Contacts createFromString(String personString) {
-//        String [] parts = personString.split(":");
-//        return new Contacts(parts[0].trim(), Integer.parseInt(parts[1].trim()));
-//    }
     public String getName() {
         return name;
     }
@@ -30,15 +26,6 @@ public class Contact {
     public void setNumber(String number) {
         this.number = number;
     }
-
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (!(obj instanceof Contacts)) {
-//            return false;
-//        }
-//        Contacts contact = (Contacts) obj;
-//        return contact.name.equals(this.name) && contact.number.equals(this.number);
-//    }
 
 }
 
