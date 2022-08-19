@@ -1,11 +1,12 @@
 package contacts;
 
 public class Contact {
-    private String name;
-    private Integer number;
+
+    public String name;
+    public String number;
 
 
-    public Contact(String name, int number) {
+    public Contact(String name, String number) {
         this.name = name;
         this.number = number;
     }
@@ -22,11 +23,11 @@ public class Contact {
         this.name = name;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

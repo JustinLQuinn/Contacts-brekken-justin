@@ -1,13 +1,31 @@
 package contacts;
 
 import java.sql.Array;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 
 
 public class ContactsApp {
-   static ArrayList<String> objects = new ArrayList<>();
+//   static ArrayList<String> objects = new ArrayList<>();
+public static ArrayList<Contact> createContactsArray(Path path) throws IOException {
+    List<String> printList = Files.readAllLines(path);
+
+    ArrayList<Contact> contactArr = new ArrayList<>();
+
+    for(int i = 0; i < printList.size(); i += 2){
+        contactArr.add(new Contact(printList.get(i), printList.get(i+1)));
+    }
+
+    return contactArr;
+
+}
 
     private static void showMenu() {
         System.out.println("");
@@ -22,7 +40,7 @@ public class ContactsApp {
 
 
     public static void main(String[] args) {
-        System.out.println(objects);
+        System.out.println(loadList());
         Scanner scanner = new Scanner(System.in);
         showMenu();
         String choice = scanner.nextLine();
@@ -35,7 +53,7 @@ public class ContactsApp {
             case "1" -> addContact();
 //            case "2" -> deleteContact();
 //            case "3" -> searchContact();
-            case "4" -> showContacts();
+            case "4" -> loadList();
             default -> {
                 showMenu();
                 return;
@@ -44,31 +62,62 @@ public class ContactsApp {
         showMenu();
     }
 
-    public static String showContacts (objects) {
-        for (int i = 0; i < objects.size(); i++) {
-            for (int j = 0; j < objects[i].size(); j++) {
-                System.out.println(objects[i].[j].getName();
-                System.out.println(objects[i].[j].getNumber();
-            }
-            return objects.field[j].toString();
+//    public static String showContacts (objects) {
+//        for (int i = 0; i < objects.size(); i++) {
+//            for (int j = 0; j < objects[i].size(); j++) {
+//                System.out.println(objects[i].[j].getName();
+//                System.out.println(objects[i].[j].getNumber();
+//            }
+//            return objects.field[j].toString();
+//        }
+
+    public static void loadList(List<String> stringList) {
+        System.out.println();
+        System.out.println("Name  |   Phone Number");
+        System.out.println("----------------------");
+
+        for(int i = 0; i < stringList.size(); i += 2){
+            System.out.println(stringList.get(i) + " | " + stringList.get(i+1));
         }
-
-
-
-    private static void addContact() {
-        System.out.println("Let's add a new contact!");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Let's add a Name.");
-        String name = scanner.nextLine();
-        System.out.println("Let's add their number.");
-        Integer phoneNumber = scanner.nextInt();
-        //pass values to object constructor
-       objects.add(String.valueOf(new Contact(name, phoneNumber)));
-        System.out.print(objects);
-
-
-        }
+        System.out.println();
     }
+
+
+
+//    private static void addContact() {
+//        System.out.println("Let's add a new contact!");
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Let's add a Name.");
+//        String name = scanner.nextLine();
+//        System.out.println("Let's add their number.");
+//        int phoneNumber = scanner.nextInt();
+//        //pass values to object constructor
+//       objects.add(String.valueOf(new Contact(name, phoneNumber)));
+//        System.out.print(objects);
+//
+//
+//        }
+//    }
+public static void addContact(Path path) throws IOException {
+    Input input = new Input();
+
+    System.out.println("--- Add a Contact ---");
+    System.out.println("Enter contact name: ");
+    String contactName = input.getString();
+    System.out.println("Enter your contact's phone number");
+    String contactNumber = input.getString();
+
+
+    ArrayList<Contact> contactArr = new ArrayList<>();
+    contactArr.add(new Contact(contactName, contactNumber));
+    for (Contact contact : contactArr) {
+        List<String> contactList = Arrays.asList(contact.name, contact.number);
+        System.out.println("contactList = " + contactList);
+        Files.write(path, contactList, StandardOpenOption.APPEND);
+    }
+    List<String> printList = Files.readAllLines(path);
+    loadList(printList);
+}
 
 
     public static void error (String message){
