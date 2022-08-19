@@ -9,12 +9,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
-
-
-
 public class ContactsApp {
-    public static final String BLUE_BACKGROUND = "\u001B[44m";
-    public static final String CYAN = "\u001B[36m";
+    public static final String PURPLE_BACKGROUND = "\u001B[45m";
+    public static final String BLACK = "\u001B[30m";
 
     public static ArrayList<Contact> createContactsArr(Path path) throws IOException {
         List<String> printList = Files.readAllLines(path);
@@ -33,8 +30,8 @@ public class ContactsApp {
         String directory = "./src/contacts/data";
         String fileName = "contacts.txt";
         Path dataFile = Paths.get(directory, fileName);
-        System.out.println(CYAN);
-        System.out.println(BLUE_BACKGROUND);
+        System.out.println(BLACK);
+        System.out.println(PURPLE_BACKGROUND);
 
         do {
             List<String> printList = Files.readAllLines(dataFile);
@@ -74,7 +71,6 @@ public class ContactsApp {
         String contactName = input.getString();
         System.out.println("Enter your contact's phone number");
         String contactNumber = input.getString();
-
 
         ArrayList<Contact> contactArr = new ArrayList<>();
         contactArr.add(new Contact(contactName, contactNumber));
