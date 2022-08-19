@@ -13,7 +13,13 @@ import java.util.ArrayList;
 
 
 public class ContactsApp {
-    //   static ArrayList<String> objects = new ArrayList<>();
+
+    public static final String RED_BACKGROUND = "\u001B[45m";
+    public static final String CYAN = "\u001B[36m";
+
+
+
+
     public static ArrayList<Contact> createContactsArr(Path path) throws IOException {
         List<String> printList = Files.readAllLines(path);
 
@@ -33,6 +39,8 @@ public class ContactsApp {
         String directory = "./src/contacts/data";
         String fileName = "contacts.txt";
         Path dataFile = Paths.get(directory, fileName);
+        System.out.println(CYAN);
+        System.out.println(RED_BACKGROUND);
 
         boolean confirmation = true;
 
