@@ -13,7 +13,13 @@ import java.util.ArrayList;
 
 
 public class ContactsApp {
-    //   static ArrayList<String> objects = new ArrayList<>();
+
+    public static final String RED_BACKGROUND = "\u001B[45m";
+    public static final String CYAN = "\u001B[36m";
+
+
+
+
     public static ArrayList<Contact> createContactsArr(Path path) throws IOException {
         List<String> printList = Files.readAllLines(path);
 
@@ -33,6 +39,8 @@ public class ContactsApp {
         String directory = "./src/contacts/data";
         String fileName = "contacts.txt";
         Path dataFile = Paths.get(directory, fileName);
+        System.out.println(CYAN);
+        System.out.println(RED_BACKGROUND);
 
         boolean confirmation = true;
 
@@ -40,17 +48,16 @@ public class ContactsApp {
             List<String> printList = Files.readAllLines(dataFile);
             System.out.printf("1) Show contacts \n2) Add a new contact \n3) Search a contact (by name) \n4) Delete a contact \n5) Exit program \nEnter an option plz [1, 2, 3, 4 or 5]:%n");
             String userSelection = input.getString();
-            System.out.println("userSelection = " + userSelection);
+//            System.out.println("userSelection = " + userSelection);
 
             switch (userSelection) {
                 case "1" -> showContacts(printList);
                 case "2" -> addContact(dataFile);
                 case "3" -> searchContacts(dataFile, input);
                 case "4" -> deleteContact(dataFile, input);
-                case "5" -> confirmation = false;
-                default -> initiateContacts();
+                case "5" -> exit();
             }
-        } while (confirmation);
+        } while (true);
     }
 
 
@@ -74,7 +81,7 @@ public class ContactsApp {
     public static void addContact(Path path) throws IOException {
         Input input = new Input();
 
-        System.out.println("--- Add a Contact ---");
+        System.out.println("~~~  Add a Contact  ~~~");
         System.out.println("Enter contact name: ");
         String contactName = input.getString();
         System.out.println("Enter your contact's phone number");
@@ -136,7 +143,7 @@ public class ContactsApp {
     }
 
     public static void error (String message){
-        System.err.println("An error occured!");
+        System.err.println("An error occurred!");
         System.out.println("ERROR: " + message);
     }
     public static void error () {
@@ -146,9 +153,9 @@ public class ContactsApp {
 
         public static void goodbye () {
             System.out.println("--------------------");
-            System.out.println("| Have a great day! |");
+            System.out.println("| Have a wonderful day! |");
             System.out.println("--------------------");
-            System.out.println("| Goodbye! |");
+            System.out.println("| Godspeed! |");
             System.out.println();
         }
 
