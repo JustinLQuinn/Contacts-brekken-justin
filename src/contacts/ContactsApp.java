@@ -34,7 +34,16 @@ public class ContactsApp {
         System.out.println(PURPLE_BACKGROUND);
 
         do {
-            if (Files.readAllBytes(dataFile).length > 0) {
+            if (Files.readAllLines(dataFile).isEmpty()) {
+                List<String> printList = Files.readAllLines(dataFile);
+                System.out.printf("1) Add a contact \n2) Exit program \nEnter an option plz [1 or 2]:%n");
+                String userSelection = input.getString();
+
+                switch (userSelection) {
+                    case "1" -> addContact(dataFile);
+                    case "2" -> exit();
+                }
+            }else{
                 List<String> printList = Files.readAllLines(dataFile);
                 System.out.printf("1) Show contacts \n2) Search a contact (by name) \n3) Add a new contact \n4) Delete a contact \n5) Exit program \nEnter an option plz [1, 2, 3, 4 or 5]:%n");
                 String userSelection = input.getString();
@@ -45,15 +54,6 @@ public class ContactsApp {
                     case "3" -> addContact(dataFile);
                     case "4" -> deleteContact(dataFile, input);
                     case "5" -> exit();
-                }
-            }else{
-                List<String> printList = Files.readAllLines(dataFile);
-                System.out.printf("1) Add a contact \n2) Exit program \nEnter an option plz [1 or 2]:%n");
-                String userSelection = input.getString();
-
-                switch (userSelection) {
-                    case "1" -> addContact(dataFile);
-                    case "2" -> exit();
                 }
             }
         } while (true);
@@ -129,6 +129,7 @@ public class ContactsApp {
             newArrList.add(contact.number);
         }
         Files.write(path, newArrList);
+        System.out.printf("%s has been removed.\n", userSearch);
         initiateContacts();
     }
 
