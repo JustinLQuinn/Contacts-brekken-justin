@@ -87,11 +87,11 @@ public class ContactsApp {
         contactArr.add(new Contact(contactName, contactNumber));
         for (Contact contact : contactArr) {
             List<String> contactList = Arrays.asList(contact.name, contact.number);
-            System.out.println("contactList = " + contactList);
             Files.write(path, contactList, StandardOpenOption.APPEND);
+            System.out.printf("%s has been added.\n", contactName);
         }
         List<String> printList = Files.readAllLines(path);
-        showContacts(printList);
+//        showContacts(printList);
     }
 
     public static void searchContacts(Path path, Input input) throws IOException {
