@@ -1,29 +1,25 @@
 Contacts Manager Application
 
-We will be building a command line application for keeping track of "contacts". A contact will be comprised of a a name and phone number combination.
+Our application will be used to keep track of "contacts".
 
-The application should be able to:
+Our application is able to:
 
-Show all your contacts
-Add a new contact
-Search a contact by her name
-Delete an existing contact
-The application should keep its data in a file named contacts.txt so that the information persists between runs of the application.
+Show all your contacts Add a new contact Search a contact by their name Delete an existing contact
 
-How you implement the above functionality is ultimately up to you, but here are a few thoughts to get you started.
+When the application starts, the contact list should is read from the file. The contacts file is edited durring functions execution. The main menu is responsive dependent on if the contact list has any entries in the file.
 
-The text file should contain one contact per line.
-When the application starts, the contact list should be read from the file.
-Before the application exits, the contacts file should be rewritten.
-The user interface for your application should include a main menu like the following, where the user will need to enter a number between 1 and 5:
+Full Menu
 
-1. View contacts.
-2. Add a new contact.
-3. Search a contact by name.
-4. Delete an existing contact.
-5. Exit.
-   Enter an option (1, 2, 3, 4 or 5):
-   The contacts information should be shown using the following format
+View contacts.
+Add a new contact.
+Search a contact by name.
+Delete an existing contact.
+Exit. Enter an option (1, 2, 3, 4 or 5):
+Restricted Menu
+
+Add a new contact.
+Exit. Enter an option (1 or 2):
+The contacts information is shown in the following format:
 
 Name | Phone number
 ---------------

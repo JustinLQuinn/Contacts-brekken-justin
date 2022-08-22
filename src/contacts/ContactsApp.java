@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ContactsApp {
     public static final String PURPLE_BACKGROUND = "\u001B[45m";
@@ -35,7 +36,7 @@ public class ContactsApp {
 
         do {
             if (Files.readAllLines(dataFile).isEmpty()) {
-                List<String> printList = Files.readAllLines(dataFile);
+//                List<String> printList = Files.readAllLines(dataFile);
                 System.out.printf("1) Add a contact \n2) Exit program \nEnter an option plz [1 or 2]:%n");
                 String userSelection = input.getString();
 
@@ -84,8 +85,14 @@ public class ContactsApp {
         String contactNumber = input.getString();
 
         ArrayList<Contact> contactArr = new ArrayList<>();
+        //1.) if (contactArr.contains(contactName) == true; ask user if "they
+        // want to edit existing contact?"
+        //2.) If yes go to editContact.
+            //2b.) call contactName.editContact(arrayName,contactName).
+        // 3.) If No, continue.
         contactArr.add(new Contact(contactName, contactNumber));
         for (Contact contact : contactArr) {
+
             List<String> contactList = Arrays.asList(contact.name, contact.number);
             Files.write(path, contactList, StandardOpenOption.APPEND);
             System.out.printf("%s has been added.\n", contactName);
@@ -102,7 +109,7 @@ public class ContactsApp {
         boolean found = false;
 
         for (Contact contact : contactArr) {
-            if (userSearch.equalsIgnoreCase(contact.name)) {
+            if (contact.name.toLowerCase().contains(userSearch)) {
                 System.out.printf("%s | %s%n", contact.name, contact.number);
                 found = true;
                 break;
@@ -122,7 +129,7 @@ public class ContactsApp {
         List<String> newArrList = new ArrayList<>();
 
         for (Contact contact : contactArr) {
-            if (userSearch.equalsIgnoreCase(contact.name)) {
+            if (contact.name.toLowerCase().contains(userSearch)) {
                 continue;
             }
             newArrList.add(contact.name);
@@ -145,6 +152,14 @@ public class ContactsApp {
             goodbye();
             System.exit(0);
         }
+
+        //static void newContactList() method ---
+        //Input input = new Input();
+        //Ask user for a List Name = fileName
+            //String directory = "./src/contacts/data";
+            //String fileName = "userInput";
+            //Path dataFile = Paths.get(directory, fileName);
+        //
     }
 
 
