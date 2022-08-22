@@ -8,18 +8,22 @@ Show all your contacts Add a new contact Search a contact by their name Delete a
 
 When the application starts, the contact list should is read from the file. The contacts file is edited durring functions execution. The main menu is responsive dependent on if the contact list has any entries in the file.
 
-Full Menu
+Full Menu:
 
-View contacts.
-Add a new contact.
-Search a contact by name.
-Delete an existing contact.
-Exit. Enter an option (1, 2, 3, 4 or 5):
-Restricted Menu
+1) View contacts
+2) Add a new contact
+3) Search a contact by name
+4) Delete an existing contact
+5) Exit 
+Enter an option (1, 2, 3, 4 or 5):
 
-Add a new contact.
-Exit. Enter an option (1 or 2):
-The contacts information is shown in the following format:
+Restricted Menu:
+
+1) Add a new contact
+2) Exit 
+Enter an option (1 or 2):
+
+The contact's information is shown in the following format:
 
 Name | Phone number
 ---------------
@@ -28,7 +32,7 @@ Jane Doe | 2342342345
 Sam Space | 3453453456
 Here is what the code for your application might look like:
 
-Load all of the contacts by calling a method that returns a List of Contact objects.
+Load all the contacts by calling a method that returns a List of Contact objects.
 Call a method that shows the user the main menu and returns their choice of action.
 Using the user's choice from the previous step, call a method that performs that action (modifying the contents of the List of Contact objects if applicable).
 Keep calling the method from step two until the user chooses to exit.
