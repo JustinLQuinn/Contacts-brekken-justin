@@ -10,4 +10,12 @@ public class Input {
     public String getString(){
         return this.scanner.nextLine();
     }
+    public Integer getInteger(){
+       String b = this.scanner.nextLine();
+        return Integer.parseInt(b);
+    }
+
+    public String getStringNumber(Integer number){
+        return Integer.toString(number); 
+     }
 }
